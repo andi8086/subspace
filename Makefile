@@ -46,27 +46,30 @@ CLIENT_DEPs = $(CLIENT_OBJs:.o=.d)
 -include $(CLIENT_DEPs)
 
 %.o: %.c
-	gcc $(CFLAGS) -c $< -o $@
+	$(info CC $@)
+	@gcc $(CFLAGS) -c $< -o $@
 
 server: $(SERVER_OBJs) $(COMMON_OBJs)
-	gcc $^ $(LDFLAGS) -o $@
+	$(info LD $@)
+	@gcc $^ $(LDFLAGS) -o $@
 
 client: $(CLIENT_OBJs) $(COMMON_OBJs)
-	gcc $^ $(LDFLAGS) -o $@
+	$(info LD $@)
+	@gcc $^ $(LDFLAGS) -o $@
 
 
 libs: libmonocypher.so libz.so libnetprot.so
 
 libmonocypher.so:
-	$(MAKE) -C helpers/external/monocypher
+	@$(MAKE) -C helpers/external/monocypher
 	cp helpers/external/monocypher/lib/*.so{,.*} .
 
 libz.so:
-	$(MAKE) -C helpers/external/zlib
+	@$(MAKE) -C helpers/external/zlib
 	cp helpers/external/zlib/*.so{,.*} .
 
 libnetcrypto.so:
-	$(MAKE) -C helpers/net-core
+	@$(MAKE) -C helpers/net-core
 
 libnetprot.so: libnetcrypto.so
 	cp helpers/net-core/*.so{,.*} .
