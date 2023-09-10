@@ -74,6 +74,8 @@ libnetprot.so: libnetcrypto.so
 clean:
 	$(RM) *.o
 	$(RM) *.d
+	$(RM) server
+	$(RM) client
 
 start_server:
 	LD_LIBRARY_PATH=. ./server
