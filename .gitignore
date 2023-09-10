@@ -1,0 +1,9 @@
+*.so.*
+*.so
+server
+client
+*.o
+*.a
+*.d
+
+
